@@ -31,9 +31,6 @@ A cell of interest would then be written
 ```python
 %%write2file scripts/blah.py _sw
 
-#<cca>
-%%write2file scripts/blah.py _sw
-
 # How would you compute the first five powers of
 a = 5
 
