@@ -19,36 +19,27 @@ class CCAMagics(Magics):
         line   = line.split(" ")
         fname  = line[0]
         client = eval(line[1])
-        if client=='CONTENT':
+        if client in ['CONTENT','DEV+CONTENT']:
             with open(fname,'w') as f:
                 cell = sub(r'#</?cca>.*(\r?\n|\z)','',cell)
                 f.write(cell)
-        elif client=='STUDENT':
+            if client=='DEV+CONTENT':
+                get_ipython().run_cell(cell)
+        elif client in ['STUDENT','DEV+STUDENT']:
             opentag   = "#<cca>"
             closetag  = "#</cca>"
             idx_open  = cell.find(opentag)
             idx_open  = idx_open if idx_open else 0
+            tmpcell = ""
             if idx_open:
-                # get rid of stuff pre opening tag
-                cell = cell[idx_open+len(opentag):]
-                # get rid of first line
-                cell = cell[cell.find("\n")+1:]
-                #
-                lcell = len(cell)
-                # find closing tag
+                tmpcell+=cell[0:idx_open-1]
                 idx_close = cell.find(closetag)
-                # get rid of previous "\n" as well if there's a closing tag (idx_close-1)
-                idx_close = idx_close-1 if idx_close else lcell-1
-                cell = cell[:idx_close]
+                tmpcell += cell[idx_close+len(closetag):]
             # output that
             with open(fname,'w') as f:
-                f.write(cell)
-        elif client=='DEV+CONTENT':
-            with open(fname,'w') as f:
-                cell = sub(r'#</?cca>.*(\r?\n|\z)','',cell)
-                f.write(cell)
-            get_ipython().run_cell(cell)
+                f.write(tmpcell)
+            if client=='DEV+STUDENT':
+                get_ipython().run_cell(cell)
         else:
             get_ipython().run_cell(cell)
-
 get_ipython().register_magics(CCAMagics)

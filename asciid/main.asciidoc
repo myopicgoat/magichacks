@@ -1,0 +1,8 @@
+= Document Title
+
+== Blah
+
+[source,python]
+----
+include::../scripts/blah.py[]
+----
