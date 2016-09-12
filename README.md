@@ -2,8 +2,8 @@
 
 ## Idea
 
-* Write your ipython notebook with a few extra commands indicating what you want to output to students. 
-* Have the content of the cells you want to show in the asciidoc by synchronized directly 
+* Write your ipython notebook with a few extra commands indicating what you want to output to students.
+* Have the content of the cells you want to show in the asciidoc by synchronized directly
 * Generate a boiler notebook for the students
 
 all of this using only one notebook and a few scripts.
@@ -16,7 +16,7 @@ At the beginning of your notebook
 
 ```python
 execfile("cca_editing_library.py")
-_sw = "DEV+CONTENT" 
+_sw = "DEV+CONTENT"
 ```
 
 the switch variable can be named whatever you want which will not be overwritten (here `_sw`), for the mode choice see below.
@@ -29,12 +29,12 @@ the switch variable can be named whatever you want which will not be overwritten
 A cell of interest would then be written
 
 ```python
-%%write2file scripts/blah.py _sw
+%%write2file scripts/example0.py _sw
 
 # How would you compute the first five powers of
 a = 5
 
-# Your solution here ... 
+# Your solution here ...
 
 #<cca>
 f = lambda v: [v**i for i in range(0,5)]
@@ -51,7 +51,7 @@ this will create (or overwrite) the file `blah.py`:
 # How would you compute the first five powers of
 a = 5
 
-# Your solution here ... 
+# Your solution here ...
 
 f = lambda v: [v**i for i in range(0,5)]
 print(f(a))
@@ -66,7 +66,7 @@ had the switch been to `"STUDENT"`
 # How would you compute the first five powers of
 a = 5
 
-# Your solution here ... 
+# Your solution here ...
 
 
 print("well done")
@@ -83,7 +83,7 @@ print("well done")
 ```asciidoc
 [source,python]
 ----
-include::../scripts/blah.py[]
+include::../scripts/example0.py[]
 ----
 ```
 
@@ -101,9 +101,10 @@ For example:
 python cca_convert.py mainNotebook.ipynb
 ```
 
+(try it and then open the corresponding `mainNotebook_template.ipynb`)
+
 ## Remarks and warnings
 
 This is a basic hack, if you want to improve it, feel free. Do not expect it to be robust or whatever if you don't use it within the constrained guidelines above.
 
 If you want entire cells to be escaped with `#<cca>` `#</cca>` they are currently written as blank cells in the converted notebook so at the moment these have to be removed manually (in the future I will hack some more to remove those with some dirty regex)
-
