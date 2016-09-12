@@ -44,7 +44,7 @@ print(f(a))
 print("well done")
 ```
 
-this will create (or overwrite) the file `blah.py`:
+this will create (or overwrite) the file `example0.py`:
 
 ```python
 
