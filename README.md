@@ -4,7 +4,7 @@
 
 * Write your ipython notebook with a few extra commands indicating what you want to output to students.
 * Have the content of the cells you want to show in the asciidoc by synchronized directly
-* Generate a boiler notebook for the students
+* Generate a boilerplate notebook for the students
 
 all of this using only one notebook and a few scripts.
 
