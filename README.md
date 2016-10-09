@@ -12,10 +12,11 @@ all of this using only one notebook and a few scripts.
 
 ### Usage
 
-At the beginning of your notebook
+At the beginning of your notebook (both Py2 and Py3)
 
 ```python
-execfile("cca_editing_library.py")
+with open("cca_editing_library.py") as f:
+    exec(f.read())
 _sw = "DEV+CONTENT"
 ```
 
